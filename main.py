@@ -28,6 +28,10 @@ def main() -> None:
     # No trailing newline: the file is exactly the line, one line, 89 chars.
     with open(path, "w", encoding="utf-8", newline="") as f:
         f.write(LINE)
+    # Read back and verify: the artifact on disk must be exactly the line.
+    with open(path, "r", encoding="utf-8", newline="") as f:
+        written = f.read()
+    assert written == LINE, "entry.txt does not match the line"
 
 
 if __name__ == "__main__":
